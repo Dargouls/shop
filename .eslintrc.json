@@ -1,0 +1,25 @@
+{
+	"extends": [
+		"next/core-web-vitals",
+		"eslint:recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript",
+		"plugin:prettier/recommended"
+	],
+	"plugins": ["import", "prettier"],
+	"rules": {
+		"prettier/prettier": "error",
+		"import/order": [
+			"error",
+			{
+				"alphabetize": {
+					"caseInsensitive": true,
+					"order": "asc"
+				},
+				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+				"newlines-between": "always-and-inside-groups"
+			}
+		]
+	}
+}
