@@ -5,6 +5,7 @@ export async function GET(request: NextRequest) {
 	const sessionId = request.nextUrl.searchParams.get('session_id');
 	if (!sessionId) return NextResponse.json({ error: 'Session not found' }, { status: 404 });
 
+	console.log('solicitação', sessionId);
 	const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
 		expand: ['line_items', 'line_items.data.price.product'],
 	});

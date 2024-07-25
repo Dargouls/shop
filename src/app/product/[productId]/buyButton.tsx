@@ -5,16 +5,20 @@ import { IProduct } from '@/interfaces.ts/product';
 
 export function BuyButton({ product }: { product: IProduct }) {
 	const handleBuyProduct = async () => {
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			body: JSON.stringify({
-				priceId: product.defaultPriceId,
-			}),
-		});
+		try {
+			const response = await fetch('/api/checkout', {
+				method: 'POST',
+				body: JSON.stringify({
+					priceId: product.defaultPriceId,
+				}),
+			});
 
-		const { checkoutUrl } = await response.json();
+			const { checkoutUrl } = await response.json();
 
-		window.location.href = checkoutUrl;
+			window.location.href = checkoutUrl;
+		} catch (error) {
+			console.log('Não foi possível comprar', error);
+		}
 	};
 	return (
 		<>
