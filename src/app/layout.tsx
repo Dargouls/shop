@@ -9,7 +9,7 @@ import './globals.css';
 const font = Sen({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Ignite Shop',
+	title: 'Ad Shop',
 	description: 'Lojinha virtual',
 };
 
@@ -21,12 +21,14 @@ export default function RootLayout({
 	return (
 		<html lang='pt'>
 			<body
-				className={'flex flex-col min-h-screen bg-base text-font-base px-4 ' + font.className}
-				data-theme='dark'
+				className={
+					'm-auto flex min-h-screen max-w-[1500px] flex-col bg-base px-4 text-font-base ' + font.className
+				}
+				data-theme='light'
 			>
 				<Header />
 				<Suspense>
-					<main className='flex flex-1 justify-center w-full flex-col'>{children}</main>
+					<main className='flex w-full flex-1 flex-col justify-center'>{children}</main>
 				</Suspense>
 			</body>
 		</html>

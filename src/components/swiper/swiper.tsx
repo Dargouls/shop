@@ -10,21 +10,22 @@ import { useKeenSlider } from 'keen-slider/react';
 const breakpoints = {
 	'(min-width: 320px)': { slides: { perView: 1, spacing: 16 } },
 	'(min-width: 550px)': { slides: { perView: 2, spacing: 16 } },
-	'(min-width: 991px)': { slides: { perView: 3, spacing: 16 } },
-	'(min-width: 1400px)': { slides: { perView: 3, spacing: 16 } },
+	'(min-width: 991px)': { slides: { perView: 4, spacing: 16 } },
+	'(min-width: 1400px)': { slides: { perView: 5, spacing: 16 } },
 };
 
 interface SwiperProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
 }
-export default function SwiperCon({ children, className, ...props }: SwiperProps) {
+
+export default function SwiperCon({ children, ...props }: SwiperProps) {
 	const [sliderRef, instanceRef] = useKeenSlider({
 		breakpoints: breakpoints,
 	});
 
 	return (
 		<>
-			<div ref={sliderRef} className='keen-slider'>
+			<div ref={sliderRef} className={twMerge('keen-slider', props.className)}>
 				{React.Children.map(children, (child, index) => (
 					<div className='keen-slider__slide'>{child}</div>
 				))}

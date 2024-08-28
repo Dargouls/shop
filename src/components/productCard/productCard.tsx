@@ -12,7 +12,7 @@ export default function ProductCard({ product, ...props }: ProductCardProps) {
 		<>
 			<div
 				className={twMerge(
-					'group relative flex object-cover cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg bg-gradient-to-b from-primary to-secondary p-1',
+					'group relative flex bg-white	py-4 object-cover cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg',
 					props.className
 				)}
 			>
@@ -23,8 +23,8 @@ export default function ProductCard({ product, ...props }: ProductCardProps) {
 					loading='lazy'
 					overrideSrc={imgPlaceholder.src}
 					// onLoad={() => setImageLoaded(true)}
-					width={384}
-					height={448}
+					width={184}
+					height={328}
 					alt={product.name}
 				/>
 				{props.children}

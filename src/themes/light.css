@@ -1,0 +1,9 @@
+html [data-theme='light'] {
+	--color-base: #faf7f2;
+	--color-base-contrast: #fff;
+	--color-font-base: #000000;
+
+	--color-contrast-full: #fff;
+	--color-sidebar: #37373f;
+	--color-link: #54a4f3;
+}
