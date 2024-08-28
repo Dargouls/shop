@@ -12,7 +12,7 @@ export function Button({ children, ...props }: ButtonProps) {
 		<>
 			<button
 				className={twMerge(
-					'bg-primary active:bg-primary-400 w-full rounded-lg py-4 transition-all duration-300 hover:opacity-80',
+					'w-full rounded-lg bg-primary py-4 transition-all duration-300 hover:opacity-80 active:brightness-90',
 					props.className
 				)}
 				onClick={props.onClick}

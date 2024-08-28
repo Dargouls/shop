@@ -3,19 +3,31 @@ import { useProducts } from '../../serverActions/useProducts';
 import SwiperCon from '../swiper/swiper';
 
 import { useMoney } from '@/hooks/formatMoney';
+import { ChevronRight } from 'lucide-react';
 import { HTMLAttributes } from 'react';
 import ProductCard from '../productCard/productCard';
 
-interface ProductsSelectorProps extends HTMLAttributes<HTMLDivElement> {}
+interface ProductsSelectorProps extends HTMLAttributes<HTMLDivElement> {
+	title?: string;
+	moreLink?: string;
+}
 
-export default async function ProductsSelector({ ...props }: ProductsSelectorProps) {
+export default async function ProductsSelector({ title, moreLink, ...props }: ProductsSelectorProps) {
 	const { getProducts } = useProducts();
 	const products = await getProducts();
 	const { formatBRL } = useMoney();
 
 	return (
 		<>
-			<section className=''>
+			<section className='flex flex-col gap-2 bg-white p-4'>
+				<div className='flex items-end gap-2'>
+					<h2 className='text-2xl'>{title}</h2>
+					{moreLink && (
+						<Link href={moreLink} className='flex gap-1 hover:text-link'>
+							Ver mais <ChevronRight />
+						</Link>
+					)}
+				</div>
 				<SwiperCon>
 					{products.map((product) => {
 						return (
@@ -23,12 +35,7 @@ export default async function ProductsSelector({ ...props }: ProductsSelectorPro
 								<ProductCard product={product} className='hover:text-link'>
 									<div>
 										<h3>{product.name}</h3>
-										<span className='overflow-hidden text-clip text-sm opacity-50'>
-											{product?.description?.toString().slice(0, 30)}
-											{(product?.description?.toString().length ?? 0) > 30 && '...'}
-										</span>
-
-										<h2 className='font-light'>{formatBRL(product.price)}</h2>
+										<h3 className='text-2xl font-light'>{formatBRL(product.price)}</h3>
 
 										<span className='opacity-40'>em 12x {formatBRL(product.price / 12)}</span>
 									</div>

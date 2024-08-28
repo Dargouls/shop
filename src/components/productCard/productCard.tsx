@@ -12,7 +12,7 @@ export default function ProductCard({ product, ...props }: ProductCardProps) {
 		<>
 			<div
 				className={twMerge(
-					'group relative flex bg-white	py-4 object-cover cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg',
+					'group relative flex h-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-lg bg-white object-cover py-4',
 					props.className
 				)}
 			>

@@ -10,7 +10,12 @@ interface HeroShopProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default function HeroShop({ ...props }: HeroShopProps) {
 	return (
-		<section className={twMerge('flex w-full items-center justify-center gap-4 px-40', props.className)}>
+		<section
+			className={twMerge(
+				'm-auto flex w-full max-w-[998px] items-center justify-center gap-4 rounded-lg bg-white p-4',
+				props.className
+			)}
+		>
 			<div className='flex h-full flex-col justify-between'>
 				<div>
 					<h1 className='font-bold'>Community of Cat Experts</h1>

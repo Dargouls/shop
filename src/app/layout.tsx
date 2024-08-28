@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import Footer from '@/components/layout/footer/footer';
 import Header from '@/components/layout/header';
 import 'keen-slider/keen-slider.min.css';
 import { Sen } from 'next/font/google';
@@ -19,18 +20,29 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='pt'>
-			<body
-				className={
-					'm-auto flex min-h-screen max-w-[1500px] flex-col bg-base px-4 text-font-base ' + font.className
-				}
-				data-theme='light'
-			>
-				<Header />
+		<html lang='pt-BR'>
+			<body className='flex justify-center bg-base' data-theme='light'>
 				<Suspense>
-					<main className='flex w-full flex-1 flex-col justify-center'>{children}</main>
+					<Container>
+						<Header />
+						<main className='flex w-full flex-1 flex-col justify-center px-4'>{children}</main>
+						<Footer />
+					</Container>
 				</Suspense>
 			</body>
 		</html>
+	);
+}
+
+function Container({ children }: { children: React.ReactNode }) {
+	return (
+		<div
+			className={
+				'flex min-h-screen w-full max-w-[1500px] flex-col justify-center bg-base text-font-base ' +
+				font.className
+			}
+		>
+			{children}
+		</div>
 	);
 }

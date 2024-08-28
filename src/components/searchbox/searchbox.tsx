@@ -1,9 +1,10 @@
 'use client';
 
 import { Search } from 'lucide-react';
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from 'react';
+import { Dispatch, HTMLAttributes, SetStateAction, useEffect, useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 import { useDebounceValue } from 'usehooks-ts';
-interface SerachboxProps<T> {
+interface SerachboxProps<T> extends HTMLAttributes<HTMLDivElement> {
 	list: T[];
 	reorderable?: boolean;
 	groupBy?: keyof T;
@@ -21,6 +22,7 @@ export default function Searchbox<T>({
 	reorderable,
 	setResult,
 	placeholder,
+	...props
 }: SerachboxProps<T>) {
 	const [order, setOrder] = useDebounceValue('asc', 200);
 	const [search, setSearch] = useDebounceValue('', 200);
@@ -36,6 +38,7 @@ export default function Searchbox<T>({
 
 	useEffect(() => {
 		if (list) {
+			console.log('list', list);
 			const filteredList = list.filter((item) =>
 				item[attributeToSearch]
 					?.toString()
@@ -55,36 +58,16 @@ export default function Searchbox<T>({
 		}
 	}, [search]);
 
-	const handleOrder = useCallback(
-		(order: string) => {
-			setOrder(order);
-			if (alphabetical) {
-				console.log(order);
-				if (order === 'asc')
-					setResult((prevState) =>
-						[...prevState].sort((a, b) => (a[attributeToSearch] > b[attributeToSearch] ? 1 : -1))
-					);
-
-				if (order === 'desc')
-					setResult((prevState) =>
-						[...prevState].sort((a, b) => (a[attributeToSearch] < b[attributeToSearch] ? 1 : -1))
-					);
-			}
-
-			if (order === 'groupBy' && groupBy) {
-				setResult((prevState) => [...prevState].sort((a, b) => (a[groupBy] > b[groupBy] ? 1 : -1)));
-			}
-		},
-		[order]
-	);
-
 	return (
 		<>
 			<search
-				className='shadow-grand flex w-40 items-center gap-2 rounded-lg bg-white p-4'
+				className={twMerge(
+					'shadow-grand flex w-full items-center gap-2 rounded-lg bg-white p-4',
+					props.className
+				)}
 				onClick={handleInputFocus}
 			>
-				<Search className='text-slate-300' />
+				<Search className='text-slate-500' />
 				<hr className='w-4 rotate-90 border-slate-200' />
 
 				<input

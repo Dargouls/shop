@@ -1,12 +1,14 @@
 import type { Config } from 'tailwindcss';
-const plugin = require('tailwindcss/plugin');
 
-const config: Config = {
+const config = {
+	darkMode: ['class'],
 	content: [
-		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
-		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./pages/**/*.{ts,tsx}',
+		'./components/**/*.{ts,tsx}',
+		'./app/**/*.{ts,tsx}',
+		'./src/**/*.{ts,tsx}',
 	],
+	prefix: '',
 	theme: {
 		extend: {
 			width: {
@@ -48,27 +50,43 @@ const config: Config = {
 			boxShadow: {
 				sweet: 'var(--shadow-primary)',
 			},
+			zIndex: {
+				infinity: '9999',
+			},
 			borderRadius: {
 				'2-5xl': '1.25rem',
 			},
-			zIndex: {
-				infinity: '9999',
+			keyframes: {
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 		},
 	},
 	plugins: [
-		plugin(function ({ addBase, theme }: any) {
+		require('tailwindcss-animate'),
+		function ({ addBase, theme }: any) {
 			addBase({
 				h1: { fontSize: '2.936rem', fontWeight: theme('fontWeight.semibold') },
 				h2: { fontSize: '2.243rem', fontWeight: theme('fontWeight.semibold') },
 				h3: { fontSize: '1.1713rem', fontWeight: theme('fontWeight.semibold') },
 				h4: { fontSize: '1.309rem', fontWeight: theme('fontWeight.semibold') },
 			});
-		}),
+		},
 		function ({ addVariant }: any) {
 			addVariant('child', '& > *');
 			addVariant('child-hover', '&:hover > *');
 		},
 	],
-};
+} satisfies Config;
+
 export default config;

@@ -7,8 +7,8 @@
 
 @layer base {
 	:root {
-		--color-primary: #00875f;
-		--color-secondary: #7465d4;
+		--color-primary: #7465d4;
+		--color-secondary: #00875f;
 		--color-base: #121214;
 		--color-base-contrast: #202024;
 		--color-font-base: #e1e1e6;
