@@ -1,5 +1,5 @@
 import searching from '@/assets/illustrations/Searching - Looking.svg';
-import { Button } from '@/components/button/button';
+import Button from '@/components/button/button';
 
 import Image from 'next/image';
 import Link from 'next/link';

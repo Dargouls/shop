@@ -1,5 +1,5 @@
 import { useMoney } from '@/hooks/formatMoney';
-import { IProduct } from '@/interfaces.ts/product';
+import { IProduct } from '@/interfaces/product';
 import { twMerge } from 'tailwind-merge';
 
 interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {

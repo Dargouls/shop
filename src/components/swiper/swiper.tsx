@@ -17,11 +17,19 @@ const breakpoints = {
 
 interface SwiperProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
+	customBreakpoints?: any;
+	loop?: boolean;
 }
 
-export default function SwiperCon({ children, ...props }: SwiperProps) {
+export default function SwiperCon({
+	customBreakpoints = breakpoints,
+	loop = false,
+	children,
+	...props
+}: SwiperProps) {
 	const [sliderRef, instanceRef] = useKeenSlider({
-		breakpoints: breakpoints,
+		breakpoints: customBreakpoints,
+		loop: loop,
 	});
 
 	return (
@@ -34,7 +42,7 @@ export default function SwiperCon({ children, ...props }: SwiperProps) {
 				</div>
 
 				<div
-					className='rounded absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-10 shadow-2xl hover:brightness-95'
+					className='absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer rounded bg-white px-2 py-10 shadow-2xl hover:brightness-95'
 					onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
 				>
 					<ArrowLeft
@@ -42,7 +50,7 @@ export default function SwiperCon({ children, ...props }: SwiperProps) {
 					/>
 				</div>
 				<div
-					className='rounded absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-10 shadow-2xl hover:brightness-95'
+					className='absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer rounded bg-white px-2 py-10 shadow-2xl hover:brightness-95'
 					onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
 				>
 					<ArrowRight

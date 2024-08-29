@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/button/button';
-import { IProduct } from '@/interfaces.ts/product';
+import Button from '@/components/button/button';
+import { IProduct } from '@/interfaces/product';
 
 export function BuyButton({ product }: { product: IProduct }) {
 	const handleBuyProduct = async () => {

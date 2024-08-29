@@ -1,5 +1,31 @@
 import type { Config } from 'tailwindcss';
 
+const colors = [
+	'slate',
+	'gray',
+	'neutral',
+	'zinc',
+	'stone',
+	'yellow',
+	'orange',
+	'red',
+	'amber',
+	'teal',
+	'lime',
+	'emerald',
+	'green',
+	'cyan',
+	'sky',
+	'blue',
+	'indigo',
+	'violet',
+	'purple',
+	'fuchsia',
+	'purple',
+	'rose',
+	'pink',
+];
+
 const config = {
 	darkMode: ['class'],
 	content: [
@@ -37,8 +63,6 @@ const config = {
 				},
 				base: 'var(--color-base)',
 				'product-card': 'var(--color-product-card)',
-				green: 'var(--color-green)',
-				red: 'var(--color-red)',
 				yellow: 'var(--color-yellow)',
 				'contrast-full': 'var(--color-contrast-full)',
 				'base-contrast': 'var(--color-base-contrast)',
@@ -57,6 +81,16 @@ const config = {
 				'2-5xl': '1.25rem',
 			},
 			keyframes: {
+				'select-input': {
+					from: {
+						width: '0',
+					},
+					to: {
+						width: '100%',
+						background: 'var(--color-slate-500)',
+						opacity: '10',
+					},
+				},
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' },
@@ -67,19 +101,26 @@ const config = {
 				},
 			},
 			animation: {
+				'select-input': 'select-input 0.5s linear',
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 		},
 	},
+	safelist: [
+		...colors.map((color) => `border-${color}-500`),
+		...colors.map((color) => `bg-${color}-500`),
+		...colors.map((color) => `text-${color}-500`),
+		...colors.map((color) => `hover:bg-${color}-500`),
+	],
 	plugins: [
 		require('tailwindcss-animate'),
 		function ({ addBase, theme }: any) {
 			addBase({
 				h1: { fontSize: '2.936rem', fontWeight: theme('fontWeight.semibold') },
 				h2: { fontSize: '2.243rem', fontWeight: theme('fontWeight.semibold') },
-				h3: { fontSize: '1.1713rem', fontWeight: theme('fontWeight.semibold') },
-				h4: { fontSize: '1.309rem', fontWeight: theme('fontWeight.semibold') },
+				h3: { fontSize: '1.309rem', fontWeight: theme('fontWeight.semibold') },
+				h4: { fontSize: '1.1713rem', fontWeight: theme('fontWeight.semibold') },
 			});
 		},
 		function ({ addVariant }: any) {

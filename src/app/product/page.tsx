@@ -1,9 +1,12 @@
-import BestSellers from '@/components/bestSellers/bestSellers';
+import brinquedos from '@/assets/images/brinquedos.png';
+import camera from '@/assets/images/camera.png';
+import casa from '@/assets/images/casa.png';
+
 import HeroShop from '@/components/heroShop/heroShop';
 import KnowSomething from '@/components/knowSomething/knowSomething';
 import ProductsSelector from '@/components/productsSelector/productsSelector';
 
-import candies from '@/assets/images/candies.png';
+import CardSections from '@/features/initialPage/cardSections/cardSections';
 export default function Products() {
 	return (
 		<>
@@ -14,21 +17,18 @@ export default function Products() {
 					<ProductsSelector moreLink='/' title='Recomendações' />
 				</section>
 
-				<section className='flex gap-4'>
-					<BestSellers />
-					<KnowSomething image={candies} />
-					<KnowSomething image={candies} />
-					<KnowSomething image={candies} />
+				<section>
+					<CardSections />
+				</section>
+
+				<section className='flex w-full gap-4'>
+					<KnowSomething className='w-full' image={camera} />
+					<KnowSomething image={brinquedos} />
+					<KnowSomething image={casa} />
 				</section>
 
 				<section>
-					<ProductsSelector moreLink='/' title='Camisas' />
-				</section>
-				<section>
-					<ProductsSelector moreLink='/' title='Casa' />
-				</section>
-				<section>
-					<ProductsSelector moreLink='/' title='Eletrônicos' />
+					<ProductsSelector moreLink='/' title='Seu histórico' />
 				</section>
 			</main>
 		</>
